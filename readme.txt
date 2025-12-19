@@ -92,3 +92,10 @@ Customize the error message shown when a coupon fails category validation.
 
 See [readme.md on GitHub](https://github.com/runthings-dev/runthings-wc-coupons-category-children#filters) for detailed code examples.
 
+== Additional Notes ==
+
+Built by Matthew Harris of runthings.dev, copyright 2025.
+
+Visit [runthings.dev](https://runthings.dev/) for more WordPress plugins and resources.
+
+Contribute or report issues at the [GitHub repository](https://github.com/runthings-dev/runthings-wc-coupons-category-children).

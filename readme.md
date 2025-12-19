@@ -103,7 +103,11 @@ add_filter(
 
 This plugin is licensed under the GPLv3 or later.
 
-## Author
+## Additional Notes
 
-[runthingsdev](https://runthings.dev/)
+Built by Matthew Harris of runthings.dev, copyright 2025.
+
+Visit [runthings.dev](https://runthings.dev/) for more WordPress plugins and resources.
+
+Contribute or report issues at the [GitHub repository](https://github.com/runthings-dev/runthings-wc-coupons-category-children).
 
