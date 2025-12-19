@@ -29,7 +29,7 @@ Coupons Category Children for WooCommerce extends the built-in WooCommerce coupo
 
 = How It Works =
 
-When you select a category in the "Allowed categories (incl. children)" field, the plugin automatically includes all subcategories during validation. If your category structure changes over time, the coupon restrictions update automatically.
+When you select a category in the "Product categories (incl. children)" field, the plugin automatically includes all subcategories during validation. If your category structure changes over time, the coupon restrictions update automatically.
 
 == Installation ==
 
