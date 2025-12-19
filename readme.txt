@@ -15,7 +15,7 @@ Restrict WooCommerce coupons by product categories, automatically including all 
 
 Coupons Category Children for WooCommerce extends the built-in WooCommerce coupon category restrictions by automatically including all subcategories when you select a parent category.
 
-With WooCommerce's default category restrictions, if you select "Clothing" as an allowed category, only products directly in "Clothing" will qualify - not products in "T-Shirts" or "Pants" subcategories. This plugin solves that limitation.
+With WooCommerce's default category restrictions, if you select "Clothing" as an allowed category, only products directly in "Clothing" will qualify - not products in "T-Shirts" or "Trousers" subcategories. This plugin solves that limitation.
 
 = Features =
 
