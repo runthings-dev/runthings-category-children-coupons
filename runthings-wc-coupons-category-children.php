@@ -38,6 +38,7 @@ namespace Runthings\WCCouponsCategoryChildren;
 use Exception;
 use WC_Coupon;
 use WC_Discounts;
+use WC_Product;
 
 if (!defined('WPINC')) {
     die;
@@ -57,7 +58,12 @@ class CouponsCategoryChildren
 
         add_action('woocommerce_coupon_options_usage_restriction', [$this, 'add_category_fields'], 10);
         add_action('woocommerce_coupon_options_save', [$this, 'save_category_fields'], 10, 1);
+
+        // Cart-level validation (for fixed_cart coupons)
         add_filter('woocommerce_coupon_is_valid', [$this, 'validate_coupon_categories'], 10, 3);
+
+        // Product-level validation (for percent/fixed_product coupons - controls which products get discounted)
+        add_filter('woocommerce_coupon_is_valid_for_product', [$this, 'validate_coupon_for_product'], 10, 4);
     }
 
     private function is_woocommerce_active(): bool
@@ -140,9 +146,19 @@ class CouponsCategoryChildren
         update_post_meta($post_id, self::EXCLUDED_CATEGORIES_META_KEY, $excluded);
     }
 
+    /**
+     * Cart-level validation for fixed_cart coupons.
+     * For cart coupons, categories control whether the coupon is valid at all.
+     */
     public function validate_coupon_categories(bool $is_valid, WC_Coupon $coupon, WC_Discounts $discounts): bool
     {
         if (!$is_valid) {
+            return $is_valid;
+        }
+
+        // Only apply cart-level validation to cart coupon types (fixed_cart)
+        // Product coupons (percent, fixed_product) are handled by validate_coupon_for_product
+        if ($coupon->is_type(wc_get_product_coupon_types())) {
             return $is_valid;
         }
 
@@ -176,6 +192,47 @@ class CouponsCategoryChildren
         }
 
         return true;
+    }
+
+    /**
+     * Product-level validation for percent/fixed_product coupons.
+     * For product coupons, categories control which products get discounted.
+     */
+    public function validate_coupon_for_product(bool $valid, WC_Product $product, WC_Coupon $coupon, array $values): bool
+    {
+        $allowed_categories = get_post_meta($coupon->get_id(), self::ALLOWED_CATEGORIES_META_KEY, true);
+        $allowed_categories = is_array($allowed_categories) ? $allowed_categories : [];
+
+        $excluded_categories = get_post_meta($coupon->get_id(), self::EXCLUDED_CATEGORIES_META_KEY, true);
+        $excluded_categories = is_array($excluded_categories) ? $excluded_categories : [];
+
+        // If no categories configured in our fields, don't modify the result
+        if (empty($allowed_categories) && empty($excluded_categories)) {
+            return $valid;
+        }
+
+        // Get product categories (including parent product for variations)
+        $product_id = $product->get_parent_id() ? $product->get_parent_id() : $product->get_id();
+        $product_cats = wc_get_product_cat_ids($product_id);
+
+        $expanded_allowed = $this->expand_categories_with_children($allowed_categories);
+        $expanded_excluded = $this->expand_categories_with_children($excluded_categories);
+
+        // Check allowed categories - product must be in allowed categories to get discount
+        if (!empty($expanded_allowed)) {
+            if (empty(array_intersect($product_cats, $expanded_allowed))) {
+                return false;
+            }
+        }
+
+        // Check excluded categories - product in excluded categories doesn't get discount
+        if (!empty($expanded_excluded)) {
+            if (!empty(array_intersect($product_cats, $expanded_excluded))) {
+                return false;
+            }
+        }
+
+        return $valid;
     }
 
     private function get_cart_category_ids(): array
