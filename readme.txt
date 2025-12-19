@@ -66,7 +66,7 @@ They are automatically included! The plugin checks category relationships at val
 
 == Changelog ==
 
-= 1.0.0 - 18th December 2025 =
+= 1.0.0 - 19th December 2025 =
 * Initial release.
 * Allowed categories with automatic child inclusion.
 * Excluded categories with automatic child inclusion.

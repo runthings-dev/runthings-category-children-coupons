@@ -92,7 +92,7 @@ add_filter(
 
 ## Changelog
 
-### 1.0.0 - 18th December 2025
+### 1.0.0 - 19th December 2025
 
 * Initial release.
 * Allowed categories with automatic child inclusion.
@@ -110,4 +110,3 @@ Built by Matthew Harris of runthings.dev, copyright 2025.
 Visit [runthings.dev](https://runthings.dev/) for more WordPress plugins and resources.
 
 Contribute or report issues at the [GitHub repository](https://github.com/runthings-dev/runthings-wc-coupons-category-children).
-
