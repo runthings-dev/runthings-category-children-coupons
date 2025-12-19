@@ -47,6 +47,17 @@ If you find that this is a blocking issue, please open an issue on the [GitHub r
 
 They are automatically included! The plugin checks category relationships at validation time, so new subcategories are picked up immediately.
 
+## Screenshots
+
+### Category restriction fields
+![The category restriction fields in the coupon Usage restriction tab](screenshot-1.jpg)
+
+### Valid coupon applied
+![A percentage coupon correctly applied only to products in the allowed category](screenshot-2.jpg)
+
+### Excluded category
+![A product from an excluded category shows no discount applied](screenshot-3.jpg)
+
 ## Filters
 
 ### runthings_wc_coupons_category_children_error_message

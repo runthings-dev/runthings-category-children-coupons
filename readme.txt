@@ -61,6 +61,8 @@ They are automatically included! The plugin checks category relationships at val
 == Screenshots ==
 
 1. The category restriction fields in the coupon Usage restriction tab.
+2. A percentage coupon correctly applied only to products in the allowed category.
+3. A product from an excluded category shows no discount applied.
 
 == Changelog ==
 
