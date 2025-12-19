@@ -80,5 +80,5 @@ Customize the error message shown when a coupon fails category validation.
 
 **Example:**
 
-See readme.md for detailed code examples.
+See [readme.md on GitHub](https://github.com/runthings-dev/runthings-wc-coupons-category-children#filters) for detailed code examples.
 
