@@ -92,6 +92,10 @@ add_filter(
 
 ## Changelog
 
+### 1.0.1 - 4th January 2026
+
+* Fixed fatal error when validating coupons in order context (WC_Order_Item_Product vs array type).
+
 ### 1.0.0 - 19th December 2025
 
 * Initial release.

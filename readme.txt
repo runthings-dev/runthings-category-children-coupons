@@ -1,6 +1,5 @@
 === Coupons Category Children for WooCommerce ===
 Contributors: runthingsdev
-Donate link: https://runthings.dev/donate/
 Tags: woocommerce, coupons, categories, subcategories, restrictions
 Requires at least: 6.4
 Tested up to: 6.9
@@ -66,6 +65,9 @@ They are automatically included! The plugin checks category relationships at val
 
 == Changelog ==
 
+= 1.0.1 - 4th January 2026 =
+* Fixed fatal error when validating coupons in order context (WC_Order_Item_Product vs array type).
+
 = 1.0.0 - 19th December 2025 =
 * Initial release.
 * Allowed categories with automatic child inclusion.
@@ -73,6 +75,9 @@ They are automatically included! The plugin checks category relationships at val
 * Filter `runthings_wc_coupons_category_children_error_message` for custom error messages.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+Fixes fatal error that could occur when WooCommerce validates coupons during order processing.
 
 = 1.0.0 =
 Initial release of the plugin. No upgrade steps required.
