@@ -197,8 +197,13 @@ class CouponsCategoryChildren
     /**
      * Product-level validation for percent/fixed_product coupons.
      * For product coupons, categories control which products get discounted.
+     *
+     * @param bool $valid Whether the coupon is valid for this product.
+     * @param WC_Product $product The product being checked.
+     * @param WC_Coupon $coupon The coupon being validated.
+     * @param array|WC_Order_Item_Product $values Cart item data (array) or order item (WC_Order_Item_Product).
      */
-    public function validate_coupon_for_product(bool $valid, WC_Product $product, WC_Coupon $coupon, array $values): bool
+    public function validate_coupon_for_product(bool $valid, WC_Product $product, WC_Coupon $coupon, $values): bool
     {
         $allowed_categories = get_post_meta($coupon->get_id(), self::ALLOWED_CATEGORIES_META_KEY, true);
         $allowed_categories = is_array($allowed_categories) ? $allowed_categories : [];
