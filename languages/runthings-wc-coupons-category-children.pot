@@ -2,16 +2,16 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Coupons Category Children for WooCommerce 1.0.1\n"
+"Project-Id-Version: Coupons Category Children for WooCommerce 1.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/runthings-wc-coupons-category-children\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-04T22:40:34+00:00\n"
+"POT-Creation-Date: 2026-01-06T16:18:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: runthings-wc-coupons-category-children\n"
 
 #. Plugin Name of the plugin
@@ -43,34 +43,38 @@ msgstr ""
 msgid "Coupons Category Children for WooCommerce requires WooCommerce to be active. Please install and activate WooCommerce."
 msgstr ""
 
-#: runthings-wc-coupons-category-children.php:99
-msgid "Product categories (incl. children)"
+#: runthings-wc-coupons-category-children.php:95
+msgid "And"
 msgstr ""
 
 #: runthings-wc-coupons-category-children.php:100
+msgid "Product categories (incl. children)"
+msgstr ""
+
+#: runthings-wc-coupons-category-children.php:101
 msgid "Any category"
 msgstr ""
 
-#: runthings-wc-coupons-category-children.php:111
+#: runthings-wc-coupons-category-children.php:112
 msgid "Product categories (and their subcategories) that the coupon will be applied to, or that need to be in the cart for cart discounts to be applied."
 msgstr ""
 
-#: runthings-wc-coupons-category-children.php:116
+#: runthings-wc-coupons-category-children.php:117
 msgid "Exclude categories (incl. children)"
 msgstr ""
 
-#: runthings-wc-coupons-category-children.php:117
+#: runthings-wc-coupons-category-children.php:118
 msgid "No categories"
 msgstr ""
 
-#: runthings-wc-coupons-category-children.php:128
+#: runthings-wc-coupons-category-children.php:129
 msgid "Product categories (and their subcategories) that the coupon will not be applied to, or that cannot be in the cart for cart discounts to be applied."
 msgstr ""
 
-#: runthings-wc-coupons-category-children.php:287
+#: runthings-wc-coupons-category-children.php:288
 msgid "This coupon is not valid for the product categories in your cart."
 msgstr ""
 
-#: runthings-wc-coupons-category-children.php:289
+#: runthings-wc-coupons-category-children.php:290
 msgid "This coupon cannot be used with some product categories in your cart."
 msgstr ""
