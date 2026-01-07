@@ -50,13 +50,13 @@ They are automatically included! The plugin checks category relationships at val
 ## Screenshots
 
 ### Category restriction fields
-![The category restriction fields in the coupon Usage restriction tab](https://raw.githubusercontent.com/runthings-dev/runthings-wc-coupons-category-children/main/.wordpress-org/screenshot-1.jpg)
+![The category restriction fields in the coupon Usage restriction tab](https://raw.githubusercontent.com/runthings-dev/runthings-wc-coupons-category-children/master/.wordpress-org/screenshot-1.jpg)
 
 ### Valid coupon applied
-![A percentage coupon correctly applied only to products in the allowed category](https://raw.githubusercontent.com/runthings-dev/runthings-wc-coupons-category-children/main/.wordpress-org/screenshot-2.jpg)
+![A percentage coupon correctly applied only to products in the allowed category](https://raw.githubusercontent.com/runthings-dev/runthings-wc-coupons-category-children/master/.wordpress-org/screenshot-2.jpg)
 
 ### Excluded category
-![A product from an excluded category shows no discount applied](https://raw.githubusercontent.com/runthings-dev/runthings-wc-coupons-category-children/main/.wordpress-org/screenshot-3.jpg)
+![A product from an excluded category shows no discount applied](https://raw.githubusercontent.com/runthings-dev/runthings-wc-coupons-category-children/master/.wordpress-org/screenshot-3.jpg)
 
 ## Filters
 
