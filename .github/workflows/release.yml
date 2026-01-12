@@ -1,0 +1,13 @@
+name: Release (GitHub)
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    uses: runthings-dev/.github/.github/workflows/plugin-release.yml@master
