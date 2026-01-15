@@ -44,6 +44,7 @@ if (!defined('WPINC')) {
     die;
 }
 
+define('RUNTHINGS_WC_CCC_VERSION', '1.1.0');
 define('RUNTHINGS_WC_CCC_URL', plugin_dir_url(__FILE__));
 define('RUNTHINGS_WC_CCC_DIR', plugin_dir_path(__FILE__));
 
@@ -63,6 +64,7 @@ class CouponsCategoryChildren
 
         add_action('woocommerce_coupon_options_usage_restriction', [$this, 'add_category_fields'], 10);
         add_action('woocommerce_coupon_options_save', [$this, 'save_category_fields'], 10, 1);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
 
         // Cart-level validation (for fixed_cart coupons)
         add_filter('woocommerce_coupon_is_valid', [$this, 'validate_coupon_categories'], 10, 3);
@@ -84,6 +86,33 @@ class CouponsCategoryChildren
         echo '<div class="error"><p>';
         esc_html_e('Coupons Category Children for WooCommerce requires WooCommerce to be active. Please install and activate WooCommerce.', 'runthings-wc-coupons-category-children');
         echo '</p></div>';
+    }
+
+    public function enqueue_admin_scripts(string $hook): void
+    {
+        if ($hook !== 'post.php' && $hook !== 'post-new.php') {
+            return;
+        }
+
+        $screen = get_current_screen();
+        if (!$screen || $screen->post_type !== 'shop_coupon') {
+            return;
+        }
+
+        wp_enqueue_script(
+            'runthings-wc-ccc-admin-conflict-notice',
+            RUNTHINGS_WC_CCC_URL . 'assets/js/admin-conflict-notice.js',
+            ['jquery'],
+            RUNTHINGS_WC_CCC_VERSION,
+            true
+        );
+
+        wp_enqueue_style(
+            'runthings-wc-ccc-admin-conflict-notice',
+            RUNTHINGS_WC_CCC_URL . 'assets/css/admin-conflict-notice.css',
+            [],
+            RUNTHINGS_WC_CCC_VERSION
+        );
     }
 
     public function add_category_fields(): void
@@ -136,6 +165,16 @@ class CouponsCategoryChildren
             echo wc_help_tip(__('Product categories (and their subcategories) that the coupon will not be applied to, or that cannot be in the cart for cart discounts to be applied.', 'runthings-wc-coupons-category-children'));
             ?>
         </p>
+
+
+            <div class="runthings-category-conflict-notice notice notice-warning inline" style="display: none;">
+                <p>
+                    <strong><?php esc_html_e('Conflicting category settings detected.', 'runthings-wc-coupons-category-children'); ?></strong>
+                    <?php esc_html_e('You have both WooCommerce\'s built-in category fields and "incl. children" fields configured. These operate as AND logic - the coupon must pass both checks, which may cause unexpected results. We recommend using one or the other.', 'runthings-wc-coupons-category-children'); ?>
+                    <a href="https://github.com/runthings-dev/runthings-wc-coupons-category-children#can-i-use-both-this-plugins-fields-and-woocommerces-built-in-category-fields" target="_blank" rel="noopener noreferrer"><?php esc_html_e('Learn more', 'runthings-wc-coupons-category-children'); ?></a>
+                </p>
+            </div>
+
 
         <?php
         echo '</div>';
