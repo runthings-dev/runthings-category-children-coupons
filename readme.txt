@@ -23,7 +23,7 @@ Coupons Category Children for WooCommerce extends the built-in WooCommerce coupo
 * Restrict coupons to specific category trees (parent + all descendants)
 * Exclude entire category trees from coupon eligibility
 * Automatic subcategory inclusion - no need to manually select every child category
-* Works alongside WooCommerce's existing coupon restrictions
+* Works alongside WooCommerce's non-category coupon restrictions
 * Customizable error messages via filter
 * AutomateWoo compatibility - category restrictions are copied when generating coupons from templates
 
