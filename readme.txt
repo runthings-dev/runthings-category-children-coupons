@@ -67,6 +67,8 @@ Yes! When AutomateWoo generates coupons from a template coupon, the category res
 1. The category restriction fields in the coupon Usage restriction tab.
 2. A percentage coupon correctly applied only to products in the allowed category.
 3. A product from an excluded category shows no discount applied.
+4. Warning notice when both WooCommerce's built-in and this plugin's category fields are used together.
+
 
 == Changelog ==
 

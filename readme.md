@@ -63,6 +63,9 @@ Yes! When AutomateWoo generates coupons from a template coupon, the category res
 ### Excluded category
 ![A product from an excluded category shows no discount applied](https://raw.githubusercontent.com/runthings-dev/runthings-wc-coupons-category-children/master/.wordpress-org/screenshot-3.jpg)
 
+### Conflict warning
+![Warning notice when both WooCommerce's built-in and this plugin's category fields are used together](https://raw.githubusercontent.com/runthings-dev/runthings-wc-coupons-category-children/master/.wordpress-org/screenshot-4.jpg)
+
 ## Filters
 
 ### runthings_wc_coupons_category_children_error_message
