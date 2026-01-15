@@ -10,4 +10,4 @@ permissions:
 
 jobs:
   release:
-    uses: runthings-dev/.github/.github/workflows/plugin-release.yml@master
+    uses: runthings-dev/.github/.github/workflows/plugin-release.yml@v1
