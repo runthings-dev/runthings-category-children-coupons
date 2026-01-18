@@ -105,6 +105,11 @@ add_filter(
 
 ## Changelog
 
+### 1.4.0 - 18th January 2026
+
+- Added "Product categories (excl. children)" and "Exclude categories (excl. children)" fields - match only exact categories without including subcategories.
+- Plugin now provides a complete replacement for WooCommerce's built-in category restrictions with both "incl. children" and "excl. children" options.
+
 ### 1.3.0 - 16th January 2026
 
 - Plugin renamed from runthings-wc-coupons-category-children to runthings-category-children-coupons to comply with WordPress.org trademark guidelines.
