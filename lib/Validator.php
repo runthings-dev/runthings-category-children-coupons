@@ -260,10 +260,11 @@ class Validator
         $deprecated_hook = 'runthings_wc_coupons_category_children_error_message';
         if (has_filter($deprecated_hook)) {
             _deprecated_hook(
-                $deprecated_hook,
+                esc_html($deprecated_hook),
                 '1.3.0',
                 'runthings_category_children_coupons_error_message'
             );
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Intentional for deprecated hook support
             $default_message = apply_filters($deprecated_hook, $default_message, $error_context);
         }
 
