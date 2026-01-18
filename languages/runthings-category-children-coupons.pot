@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Category Children Coupons for WooCommerce 1.3.0\n"
+"Project-Id-Version: Category Children Coupons for WooCommerce 1.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/runthings-category-children-coupons\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-16T14:34:09+00:00\n"
+"POT-Creation-Date: 2026-01-18T22:48:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: runthings-category-children-coupons\n"
@@ -39,51 +39,69 @@ msgstr ""
 msgid "https://runthings.dev/"
 msgstr ""
 
-#: lib/Admin.php:58
+#: lib/Admin.php:64
 msgid "And"
 msgstr ""
 
-#: lib/Admin.php:63
+#: lib/Admin.php:69
 msgid "Product categories (incl. children)"
 msgstr ""
 
-#: lib/Admin.php:64
+#: lib/Admin.php:70
+#: lib/Admin.php:104
 msgid "Any category"
 msgstr ""
 
-#: lib/Admin.php:75
+#: lib/Admin.php:81
 msgid "Product categories (and their subcategories) that the coupon will be applied to, or that need to be in the cart for cart discounts to be applied."
 msgstr ""
 
-#: lib/Admin.php:80
+#: lib/Admin.php:86
 msgid "Exclude categories (incl. children)"
 msgstr ""
 
-#: lib/Admin.php:81
+#: lib/Admin.php:87
+#: lib/Admin.php:121
 msgid "No categories"
 msgstr ""
 
-#: lib/Admin.php:92
+#: lib/Admin.php:98
 msgid "Product categories (and their subcategories) that the coupon will not be applied to, or that cannot be in the cart for cart discounts to be applied."
 msgstr ""
 
-#: lib/Admin.php:99
+#: lib/Admin.php:103
+msgid "Product categories (excl. children)"
+msgstr ""
+
+#: lib/Admin.php:115
+msgid "Product categories (only these specific categories, not their subcategories) that the coupon will be applied to, or that need to be in the cart for cart discounts to be applied."
+msgstr ""
+
+#: lib/Admin.php:120
+msgid "Exclude categories (excl. children)"
+msgstr ""
+
+#: lib/Admin.php:132
+msgid "Product categories (only these specific categories, not their subcategories) that the coupon will not be applied to, or that cannot be in the cart for cart discounts to be applied."
+msgstr ""
+
+#: lib/Admin.php:139
 msgid "Conflicting category settings detected."
 msgstr ""
 
-#: lib/Admin.php:100
-msgid "You have both WooCommerce's built-in category fields and \"incl. children\" fields configured. These operate as AND logic - the coupon must pass both checks, which may cause unexpected results. We recommend using one or the other."
+#: lib/Admin.php:140
+msgid "You have both WooCommerce's built-in category fields and this plugin's category fields (\"incl. children\" and \"excl. children\") configured. These operate as AND logic - the coupon must pass both checks, which may cause unexpected results. We recommend using one or the other."
 msgstr ""
 
-#: lib/Admin.php:101
+#: lib/Admin.php:141
 msgid "Learn more"
 msgstr ""
 
-#: lib/Validator.php:178
+#: lib/Validator.php:256
 msgid "This coupon is not valid for the product categories in your cart."
 msgstr ""
 
-#: lib/Validator.php:179
+#: lib/Validator.php:257
 msgid "This coupon cannot be used with some product categories in your cart."
 msgstr ""
 
