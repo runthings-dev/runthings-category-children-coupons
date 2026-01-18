@@ -1,48 +1,53 @@
 # Category Children Coupons for WooCommerce
 
-Restrict WooCommerce coupons by product categories, automatically including all child/descendant categories.
+Restrict WooCommerce coupons by product categories, with options to include or exclude child/descendant categories.
 
 ## Description
 
-Category Children Coupons for WooCommerce extends the built-in WooCommerce coupon category restrictions in two ways:
+Category Children Coupons for WooCommerce provides a complete replacement for WooCommerce's built-in coupon category restrictions with additional flexibility:
 
-**Easier category selection:** Select a parent category and all its subcategories are automatically included. With WooCommerce's default restrictions, selecting "Clothing" only matches products directly in that category - not products in "T-Shirts" or "Trousers" subcategories. This plugin includes the entire category tree.
+**Include children mode:** Select a parent category and all its subcategories are automatically included. With WooCommerce's default restrictions, selecting "Clothing" only matches products directly in that category - not products in "T-Shirts" or "Trousers" subcategories. This plugin includes the entire category tree.
 
-**Future-proof coupons:** With default WooCommerce, if you add or reorganize subcategories, you must manually update every active coupon to include the new categories. This plugin stores the parent category selection and dynamically expands it at validation time - new subcategories are automatically included without editing existing coupons.
+**Exclude children mode:** Match only the specific categories you select, without including subcategories. This mirrors WooCommerce's built-in behavior but is managed within this plugin's unified interface.
+
+**Future-proof coupons:** The plugin stores your category selection and dynamically expands child categories at validation time - new subcategories are automatically included (or excluded) without editing existing coupons.
 
 ## Features
 
-* Restrict coupons to specific category trees (parent + all descendants)
-* Exclude entire category trees from coupon eligibility
-* Automatic subcategory inclusion - no need to manually select every child category
-* Works alongside WooCommerce's non-category coupon restrictions
+* Four category restriction fields for complete control:
+  * Product categories (incl. children) - allowed categories with all descendants
+  * Exclude categories (incl. children) - blocked categories with all descendants
+  * Product categories (excl. children) - allowed categories only, no descendants
+  * Exclude categories (excl. children) - blocked categories only, no descendants
+* Automatic subcategory handling based on your preference
+* Works alongside WooCommerce's other (non-category) coupon restrictions
 * Customizable error messages via filter
 * AutomateWoo compatibility - category restrictions are copied when generating coupons from templates
 
 ## How It Works
 
-When you select a category in the "Product categories (incl. children)" field, the plugin automatically includes all subcategories during validation. If your category structure changes over time, the coupon restrictions update automatically.
+When you select a category in an "(incl. children)" field, the plugin automatically includes all subcategories during validation. When you use an "(excl. children)" field, only the exact categories you select are matched. Selected categories with children included are validated at usage time, so the current children are automatically used, even if they have changed since the coupon was set up.
 
 ## Installation
 
 1. Upload the plugin files to the `/wp-content/plugins/runthings-category-children-coupons` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Go to Marketing > Coupons and edit or create a coupon.
-4. In the "Usage restriction" tab, you will see the new category fields with "(incl. children)" labels.
+4. In the "Usage restriction" tab, you will see four new category fields - two with "(incl. children)" and two with "(excl. children)" labels.
 
 ## Frequently Asked Questions
 
 ### How does this differ from WooCommerce's built-in category restrictions?
 
-WooCommerce's built-in "Product categories" field only matches products directly assigned to the selected categories. This plugin's fields automatically include all subcategories of your selection.
+WooCommerce's built-in "Product categories" field only matches products directly assigned to the selected categories.
+
+This plugin provides both options: "(incl. children)" fields automatically include all subcategories, while "(excl. children)" fields match only the exact categories you select - giving you complete control.
 
 ### Can I use both this plugin's fields and WooCommerce's built-in category fields?
 
-Not really. The built-in category check runs before custom plugin checks. They operate as separate restrictions (AND logic). If you use both, a coupon must first pass the built-in category rules, which isn't likely to contain the child categories.
+Not recommended. The built-in category check runs before custom plugin checks. They operate as separate restrictions (AND logic). If you use both, a coupon must first pass the built-in category rules, which may cause unexpected results.
 
-For simplicity, we recommend using one or the other on a given coupon.
-
-If you find that this is a blocking issue, please open an issue on the [GitHub repo](https://github.com/runthings-dev/runthings-category-children-coupons/issues). Allowing per-category selection of "include children" or "only top-level" is on the potential features roadmap.
+This plugin provides "(excl. children)" fields that mirror WooCommerce's built-in behavior, so you can use this plugin as a complete replacement without needing WooCommerce's built-in fields.
 
 ### What happens if I add new subcategories later?
 
@@ -77,9 +82,9 @@ Customize the error message shown when a coupon fails category validation.
 * `$message` (string) - The default error message.
 * `$context` (array) - Contains:
   * `coupon` (WC_Coupon) - The coupon object being validated.
-  * `type` (string) - Either 'allowed' or 'excluded' indicating which validation failed.
+  * `type` (string) - One of 'allowed', 'excluded', 'allowed_excl', or 'excluded_excl' indicating which validation failed.
   * `configured_category_ids` (array) - Term IDs selected in the coupon admin.
-  * `expanded_category_ids` (array) - All term IDs including children.
+  * `expanded_category_ids` (array) - All term IDs including children (same as configured for excl. children types).
 
 #### Example
 
