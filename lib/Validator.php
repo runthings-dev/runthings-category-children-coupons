@@ -37,15 +37,31 @@ class Validator
 
         $cart_category_ids = $this->get_cart_category_ids();
 
+        // Check incl. children allowed categories
         if (!empty($restrictions['expanded_allowed'])) {
             if (empty(array_intersect($cart_category_ids, $restrictions['expanded_allowed']))) {
                 $this->throw_validation_error($coupon, 'allowed', $restrictions);
             }
         }
 
+        // Check incl. children excluded categories
         if (!empty($restrictions['expanded_excluded'])) {
             if (!empty(array_intersect($cart_category_ids, $restrictions['expanded_excluded']))) {
                 $this->throw_validation_error($coupon, 'excluded', $restrictions);
+            }
+        }
+
+        // Check excl. children allowed categories (no expansion)
+        if (!empty($restrictions['allowed_excl'])) {
+            if (empty(array_intersect($cart_category_ids, $restrictions['allowed_excl']))) {
+                $this->throw_validation_error($coupon, 'allowed_excl', $restrictions);
+            }
+        }
+
+        // Check excl. children excluded categories (no expansion)
+        if (!empty($restrictions['excluded_excl'])) {
+            if (!empty(array_intersect($cart_category_ids, $restrictions['excluded_excl']))) {
+                $this->throw_validation_error($coupon, 'excluded_excl', $restrictions);
             }
         }
 
@@ -90,8 +106,29 @@ class Validator
             return $err;
         }
 
-        $type = !empty($restrictions['allowed']) ? 'allowed' : 'excluded';
+        // Determine which type of restriction caused the failure
+        $type = $this->determine_failed_restriction_type($restrictions);
         return $this->get_error_message($coupon, $type, $restrictions);
+    }
+
+    /**
+     * Determine which restriction type caused the failure.
+     */
+    private function determine_failed_restriction_type(array $restrictions): string
+    {
+        if (!empty($restrictions['allowed'])) {
+            return 'allowed';
+        }
+        if (!empty($restrictions['allowed_excl'])) {
+            return 'allowed_excl';
+        }
+        if (!empty($restrictions['excluded'])) {
+            return 'excluded';
+        }
+        if (!empty($restrictions['excluded_excl'])) {
+            return 'excluded_excl';
+        }
+        return 'allowed';
     }
 
     /**
@@ -119,7 +156,7 @@ class Validator
     }
 
     /**
-     * Get category restrictions for a coupon, with expanded children.
+     * Get category restrictions for a coupon, with expanded children where applicable.
      * Returns null if no restrictions configured.
      */
     private function get_category_restrictions(WC_Coupon $coupon): ?array
@@ -130,13 +167,21 @@ class Validator
         $excluded = get_post_meta($coupon->get_id(), Plugin::EXCLUDED_CATEGORIES_META_KEY, true);
         $excluded = is_array($excluded) ? $excluded : [];
 
-        if (empty($allowed) && empty($excluded)) {
+        $allowed_excl = get_post_meta($coupon->get_id(), Plugin::ALLOWED_CATEGORIES_EXCL_META_KEY, true);
+        $allowed_excl = is_array($allowed_excl) ? $allowed_excl : [];
+
+        $excluded_excl = get_post_meta($coupon->get_id(), Plugin::EXCLUDED_CATEGORIES_EXCL_META_KEY, true);
+        $excluded_excl = is_array($excluded_excl) ? $excluded_excl : [];
+
+        if (empty($allowed) && empty($excluded) && empty($allowed_excl) && empty($excluded_excl)) {
             return null;
         }
 
         return [
             'allowed' => $allowed,
             'excluded' => $excluded,
+            'allowed_excl' => $allowed_excl,
+            'excluded_excl' => $excluded_excl,
             'expanded_allowed' => $this->expand_categories_with_children($allowed),
             'expanded_excluded' => $this->expand_categories_with_children($excluded),
         ];
@@ -147,14 +192,30 @@ class Validator
      */
     private function categories_pass_restrictions(array $category_ids, array $restrictions): bool
     {
+        // Check incl. children allowed categories
         if (!empty($restrictions['expanded_allowed'])) {
             if (empty(array_intersect($category_ids, $restrictions['expanded_allowed']))) {
                 return false;
             }
         }
 
+        // Check incl. children excluded categories
         if (!empty($restrictions['expanded_excluded'])) {
             if (!empty(array_intersect($category_ids, $restrictions['expanded_excluded']))) {
+                return false;
+            }
+        }
+
+        // Check excl. children allowed categories (no expansion)
+        if (!empty($restrictions['allowed_excl'])) {
+            if (empty(array_intersect($category_ids, $restrictions['allowed_excl']))) {
+                return false;
+            }
+        }
+
+        // Check excl. children excluded categories (no expansion)
+        if (!empty($restrictions['excluded_excl'])) {
+            if (!empty(array_intersect($category_ids, $restrictions['excluded_excl']))) {
                 return false;
             }
         }
@@ -167,14 +228,31 @@ class Validator
      */
     private function get_error_message(WC_Coupon $coupon, string $type, array $restrictions): string
     {
+        $configured_ids = match ($type) {
+            'allowed' => $restrictions['allowed'],
+            'excluded' => $restrictions['excluded'],
+            'allowed_excl' => $restrictions['allowed_excl'],
+            'excluded_excl' => $restrictions['excluded_excl'],
+            default => [],
+        };
+
+        $expanded_ids = match ($type) {
+            'allowed' => $restrictions['expanded_allowed'],
+            'excluded' => $restrictions['expanded_excluded'],
+            'allowed_excl' => $restrictions['allowed_excl'], // No expansion for excl. children
+            'excluded_excl' => $restrictions['excluded_excl'], // No expansion for excl. children
+            default => [],
+        };
+
         $error_context = [
             'coupon' => $coupon,
             'type' => $type,
-            'configured_category_ids' => $type === 'allowed' ? $restrictions['allowed'] : $restrictions['excluded'],
-            'expanded_category_ids' => $type === 'allowed' ? $restrictions['expanded_allowed'] : $restrictions['expanded_excluded'],
+            'configured_category_ids' => $configured_ids,
+            'expanded_category_ids' => $expanded_ids,
         ];
 
-        $default_message = $type === 'allowed'
+        $is_allowed_type = in_array($type, ['allowed', 'allowed_excl'], true);
+        $default_message = $is_allowed_type
             ? __('This coupon is not valid for the product categories in your cart.', 'runthings-category-children-coupons')
             : __('This coupon cannot be used with some product categories in your cart.', 'runthings-category-children-coupons');
 

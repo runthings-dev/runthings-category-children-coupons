@@ -21,6 +21,8 @@ class AutomateWooMetaCopier
         $meta_keys = [
             Plugin::ALLOWED_CATEGORIES_META_KEY,
             Plugin::EXCLUDED_CATEGORIES_META_KEY,
+            Plugin::ALLOWED_CATEGORIES_EXCL_META_KEY,
+            Plugin::EXCLUDED_CATEGORIES_EXCL_META_KEY,
         ];
 
         foreach ($meta_keys as $key) {

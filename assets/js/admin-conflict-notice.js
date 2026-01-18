@@ -11,9 +11,12 @@
         // WooCommerce built-in fields
         wcAllowed: '#product_categories',
         wcExcluded: '#exclude_product_categories',
-        // Plugin fields
+        // Plugin fields (incl. children)
         pluginAllowed: '#runthings_ccc_allowed_categories_with_children',
         pluginExcluded: '#runthings_ccc_excluded_categories_with_children',
+        // Plugin fields (excl. children)
+        pluginAllowedExcl: '#runthings_ccc_allowed_categories_excl_children',
+        pluginExcludedExcl: '#runthings_ccc_excluded_categories_excl_children',
         // Notice container class
         notice: '.runthings-category-conflict-notice'
     };
@@ -35,7 +38,8 @@
      */
     function hasConflict() {
         const wcHasValues = hasSelection(SELECTORS.wcAllowed) || hasSelection(SELECTORS.wcExcluded);
-        const pluginHasValues = hasSelection(SELECTORS.pluginAllowed) || hasSelection(SELECTORS.pluginExcluded);
+        const pluginHasValues = hasSelection(SELECTORS.pluginAllowed) || hasSelection(SELECTORS.pluginExcluded) ||
+            hasSelection(SELECTORS.pluginAllowedExcl) || hasSelection(SELECTORS.pluginExcludedExcl);
 
         return wcHasValues && pluginHasValues;
     }
@@ -85,7 +89,9 @@
             SELECTORS.wcAllowed,
             SELECTORS.wcExcluded,
             SELECTORS.pluginAllowed,
-            SELECTORS.pluginExcluded
+            SELECTORS.pluginExcluded,
+            SELECTORS.pluginAllowedExcl,
+            SELECTORS.pluginExcludedExcl
         ];
 
         fieldSelectors.forEach(function (selector) {
