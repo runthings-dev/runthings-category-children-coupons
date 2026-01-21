@@ -1,0 +1,14 @@
+name: Deploy to WP.org
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: runthings-dev/.github/.github/workflows/wporg-svn-deploy.yml@v1
+    secrets:
+      WPORG_USERNAME: ${{ secrets.WPORG_USERNAME }}
+      WPORG_PASSWORD: ${{ secrets.WPORG_PASSWORD }}
