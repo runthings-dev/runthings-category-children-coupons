@@ -75,6 +75,9 @@ Yes! When AutomateWoo generates coupons from a template coupon, the category res
 
 == Changelog ==
 
+= 1.4.1 - 21st January 2026 =
+* Add GitHub Action for wp.org plugin directory release
+
 = 1.4.0 - 18th January 2026 =
 * Added "Product categories (excl. children)" and "Exclude categories (excl. children)" fields - match only exact categories without including subcategories.
 * Plugin now provides a complete replacement for WooCommerce's built-in category restrictions with both "incl. children" and "excl. children" options.
@@ -105,14 +108,14 @@ Yes! When AutomateWoo generates coupons from a template coupon, the category res
 
 == Upgrade Notice ==
 
+= 1.4.1 =
+Point release for plugin directory launch.
+
 = 1.4.0 =
 New "excl. children" category fields added - match exact categories without subcategories. Complete replacement for WooCommerce's built-in category restrictions.
 
 = 1.3.0 =
 Plugin renamed for WordPress.org compliance. Coupon settings auto-migrate. Filter hook renamed (old hook still works with deprecation notice).
-
-= 1.2.0 =
-Adds conflict warning notice and fixes custom error messages for percentage/fixed product coupons.
 
 == Filters ==
 

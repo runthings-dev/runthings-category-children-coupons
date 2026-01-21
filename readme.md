@@ -105,6 +105,10 @@ add_filter(
 
 ## Changelog
 
+### 1.4.1 - 21st January 2026
+
+- Add GitHub Action for wp.org plugin directory release
+
 ### 1.4.0 - 18th January 2026
 
 - Added "Product categories (excl. children)" and "Exclude categories (excl. children)" fields - match only exact categories without including subcategories.
