@@ -3,7 +3,7 @@ Contributors: runthingsdev
 Tags: woocommerce, coupons, categories, subcategories, restrictions
 Requires at least: 6.4
 Tested up to: 7.1
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 Requires PHP: 8.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -75,6 +75,9 @@ Yes! When AutomateWoo generates coupons from a template coupon, the category res
 
 == Changelog ==
 
+= 1.4.2 - 16th November 2026 =
+* Update Tested up to metadata to WordPress 7.1.
+
 = 1.4.1 - 21st January 2026 =
 * Add GitHub Action for wp.org plugin directory release
 
@@ -108,14 +111,14 @@ Yes! When AutomateWoo generates coupons from a template coupon, the category res
 
 == Upgrade Notice ==
 
+= 1.4.2 =
+Update Tested up to metadata to WordPress 7.1.
+
 = 1.4.1 =
 Point release for plugin directory launch.
 
 = 1.4.0 =
 New "excl. children" category fields added - match exact categories without subcategories. Complete replacement for WooCommerce's built-in category restrictions.
-
-= 1.3.0 =
-Plugin renamed for WordPress.org compliance. Coupon settings auto-migrate. Filter hook renamed (old hook still works with deprecation notice).
 
 == Filters ==
 

@@ -105,6 +105,10 @@ add_filter(
 
 ## Changelog
 
+### 1.4.2 - 16th November 2026
+
+- Update Tested up to metadata to WordPress 7.1.
+
 ### 1.4.1 - 21st January 2026
 
 - Add GitHub Action for wp.org plugin directory release
